@@ -1,21 +1,24 @@
 package com.backend.clinica.service.impl;
 
 
-
+import com.backend.clinica.dto.entrada.modificacion.pacienteModificacionEntradaDto;
+import com.backend.clinica.dto.entrada.paciente.PacienteEntradaDto;
+import com.backend.clinica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinica.entity.Paciente;
+import com.backend.clinica.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
 public interface IPacienteService {
-    List<Paciente> listarPacientes();
+    List<PacienteSalidaDto> listarPacientes();
 
-    Paciente registrarPaciente(Paciente paciente);
+    Paciente registrarPaciente(PacienteEntradaDto paciente);
 
-    Paciente buscarPacientePorId(int id);
+    Paciente buscarPacientePorId(Long id);
 
-    void eliminarPaciente(int id);
+    void eliminarPaciente(Long id) throws ResourceNotFoundException;
 
-    Paciente modificarPaciente(Paciente pacienteModificado);
+    PacienteSalidaDto modificarPaciente(pacienteModificacionEntradaDto pacienteModificado) throws ResourceNotFoundException;
 
 
 

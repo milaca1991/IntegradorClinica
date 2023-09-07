@@ -1,15 +1,29 @@
 package com.backend.clinica.entity;
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity(name = "DOMICILIO")
 public class Domicilio {
 
+@Id
+@GeneratedValue(strategy= GenerationType.AUTO, generator = "native")
+@GenericGenerator(name = "native", strategy = "native")
 
-
+    @Column(name = "ID")
     private int id;
-
-
+    @Column(name = "CALLE")
     private String calle;
+
+    @Column(name = "NUMERO")
     private int numero;
+
+    @Column(name = "LOCALIDAD")
     private String localidad;
+
+    @Column(name = "PROVINCIA")
     private String provincia;
 
 

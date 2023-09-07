@@ -1,18 +1,39 @@
 package com.backend.clinica.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "PACIENTES", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"dni"})
+})
 public class Paciente {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(length = 50)
     private String nombre;
+
+    @Column(length = 50)
     private String apellido;
+
+    @Column(length = 50)
     private int dni;
+
+
+    @Column(length = 50)
     private LocalDate fechaIngreso;
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "domicilio id")
     private Domicilio domicilio;
 
-    public Paciente(int id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
-        this.id = id;
+    public Paciente( String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -20,19 +41,12 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public Paciente(String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.fechaIngreso = fechaIngreso;
-        this.domicilio = domicilio;
-    }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

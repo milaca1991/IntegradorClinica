@@ -1,22 +1,35 @@
 package com.backend.clinica.entity;
 
-import java.time.LocalDateTime;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+@Entity(name = "TURNO")
 public class Turno {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+
+    @Column(name = "ID")
+    private Long id;
     private Odontologo odontologo;
+
+
+    @ManyToOne()
+
     private Paciente paciente;
+
+    @Column(name = "FECHAYHORA")
     private LocalDateTime fechaYhora;
 
 
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
