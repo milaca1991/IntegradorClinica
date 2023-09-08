@@ -1,7 +1,13 @@
 package com.backend.clinica.controler;
-
-
+import com.backend.clinica.exceptions.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import com.backend.clinica.dto.entrada.odontologo.OdontologoEntradaDto;
+import com.backend.clinica.dto.salida.odontologo.OdontologoSalidaDto;
+import com.backend.clinica.dto.entrada.modificacion.odontologoModificacionEntradaDto;
 import org.springframework.web.bind.annotation.*;
+import com.backend.clinica.service.impl.OdontologoService;
+import javax.validation.Valid;
 
 import java.util.List;
 
@@ -24,7 +30,7 @@ public class    OdontologoController {
 
     //PUT
     @PutMapping("actualizar")
-    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@Valid @RequestBody OdontologoModificacionEntradaDto odontologo) {
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@Valid @RequestBody odontologoModificacionEntradaDto odontologo) {
         return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologo), HttpStatus.OK);
     }
 

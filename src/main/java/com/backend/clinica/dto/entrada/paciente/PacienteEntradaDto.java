@@ -1,10 +1,14 @@
 package com.backend.clinica.dto.entrada.paciente;
 
-import com.backend.clinica.entity.Domicilio;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class PacienteEntradaDto {
 
@@ -31,11 +35,14 @@ public class PacienteEntradaDto {
     private LocalDate fechaIngreso;
 
     @NotNull(message = "el campo domicilio del paciente  no puede ser nulo")
-    private Domicilio domicilio;
+    @Valid
+    private DomicilioEntradaDto domicilio;
 
+    public PacienteEntradaDto() {
+    }
 
-    //contructor
-    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
+    //conStructor
+    public PacienteEntradaDto(String nombre, String apellido, int dni, LocalDate fechaIngreso, DomicilioEntradaDto domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -78,13 +85,15 @@ public class PacienteEntradaDto {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Domicilio getDomicilio() {
+    public DomicilioEntradaDto getDomicilio() {
         return domicilio;
     }
 
-    public void setDomicilio(Domicilio domicilio) {
+    public void setDomicilio(DomicilioEntradaDto domicilio) {
         this.domicilio = domicilio;
     }
+
+
 }
 
 

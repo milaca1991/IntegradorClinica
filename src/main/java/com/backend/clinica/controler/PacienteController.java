@@ -3,8 +3,6 @@ package com.backend.clinica.controler;
 import com.backend.clinica.dto.entrada.modificacion.pacienteModificacionEntradaDto;
 import com.backend.clinica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinica.dto.salida.paciente.PacienteSalidaDto;
-import com.backend.clinica.entity.Paciente;
-
 import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.service.impl.IPacienteService;
 import com.backend.clinica.service.impl.PacienteService;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/pacientes")
@@ -29,7 +29,7 @@ public class PacienteController {
     //POST
     @PostMapping("registrar")
     public ResponseEntity<PacienteSalidaDto> registrarPaciente(@Valid @RequestBody PacienteEntradaDto paciente) {
-        return new ResponseEntity<>(PacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
+        return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
 
     //PUT

@@ -68,14 +68,14 @@ public class PacienteService implements IPacienteService {
     }
 
 
-    public void eliminarPaciente(long id){
+    public void eliminarPaciente(long id) throws ResourceNotFoundException {
 
         if (buscarPacientePorId(id) != null) {
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el paciente con id: {}", id);
         } else {
             LOGGER.error("No se ha encontrado el paciente con id {}", id);
-            throw new ResourceNotFoundException("no se ha encontrado");
+          throw new ResourceNotFoundException("no se ha encontrado el paciente" + id);
         }
     }
 

@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import java.util.List;
 
 
-public class OdontologoService  implements IOdontologoService{
+public class OdontologoService implements IOdontologoService{
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(OdontologoService.class);
     private final OdontologoRepository odontologoRepository;
     private final ModelMapper modelMapper;
@@ -24,7 +24,10 @@ public class OdontologoService  implements IOdontologoService{
         this.modelMapper = modelMapper;
     }
 
+
+
     public OdontologoSalidaDto registrarOdontologo(OdontologoEntradaDto odontologo) {
+
         Odontologo odGuardado = odontologoRepository.save(dtoEntradaAEntidad(odontologo));
         OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odGuardado, OdontologoSalidaDto.class);
         LOGGER.info("Odontologo guardado: {}");
@@ -47,10 +50,12 @@ public class OdontologoService  implements IOdontologoService{
         List<OdontologoSalidaDto> odontologos = odontologoRepository.findAll().stream()
                 .map(o -> modelMapper.map(o, OdontologoSalidaDto.class)).toList();
 
-        LOGGER.info("Listado de todos los odontologos: {}");
+        LOGGER.info("Listado de todos los odontologos: {}", odontologos);
 
         return odontologos;
     }
+
+
 
     public void eliminarOdontologo(Long id) throws ResourceNotFoundException {
         if (buscarOdontologoPorId(id) != null) {
