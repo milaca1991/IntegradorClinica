@@ -6,12 +6,14 @@ import com.backend.clinica.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.backend.clinica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinica.dto.entrada.modificacion.odontologoModificacionEntradaDto;
 import org.springframework.web.bind.annotation.*;
-import com.backend.clinica.service.impl.OdontologoService;
+import com.backend.clinica.service.impl.impl.OdontologoService;
 import javax.validation.Valid;
+
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5174")
 
 @RequestMapping("/odontologos")
 public class    OdontologoController {

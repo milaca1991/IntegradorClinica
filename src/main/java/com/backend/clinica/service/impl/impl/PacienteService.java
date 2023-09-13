@@ -1,4 +1,4 @@
-package com.backend.clinica.service.impl;
+package com.backend.clinica.service.impl.impl;
 
 import com.backend.clinica.dto.entrada.modificacion.pacienteModificacionEntradaDto;
 import com.backend.clinica.dto.entrada.paciente.PacienteEntradaDto;
@@ -6,6 +6,7 @@ import com.backend.clinica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinica.entity.Paciente;
 import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.repository.PacienteRepository;
+import com.backend.clinica.service.impl.IPacienteService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,10 +51,7 @@ public class PacienteService implements IPacienteService {
 
     }
 
-    @Override
-    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
 
-    }
 
 
     @Override
@@ -67,8 +65,8 @@ public class PacienteService implements IPacienteService {
         return pacientes;
     }
 
-
-    public void eliminarPaciente(long id) throws ResourceNotFoundException {
+    @Override
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
 
         if (buscarPacientePorId(id) != null) {
             pacienteRepository.deleteById(id);
@@ -79,6 +77,35 @@ public class PacienteService implements IPacienteService {
         }
     }
 
+
+
+
+
+
+    @Override
+    public PacienteSalidaDto modificarPaciente(pacienteModificacionEntradaDto pacienteModificado) throws ResourceNotFoundException {
+        Paciente pacienteRecibido = dtoModificadoAEntidad(pacienteModificado);
+        Paciente pacienteAActualizar = pacienteRepository.findById(pacienteModificado.getId()).orElse(null);
+        PacienteSalidaDto pacienteSalidaDto = null;
+
+        if (pacienteAActualizar != null) {
+
+            pacienteAActualizar = pacienteRecibido;
+            pacienteRepository.save(pacienteAActualizar);
+
+            pacienteSalidaDto = entidadADtoSalida(pacienteAActualizar);
+
+            LOGGER.warn("Paciente actualizado: {}", pacienteSalidaDto);
+
+        } else {
+            LOGGER.error("No fue posible actualizar los datos ya que el paciente no se encuentra registrado");
+            throw new ResourceNotFoundException("No fue posible actualizar los datos ya que el paciente no se encuentra registrado");
+        }
+
+
+        return pacienteSalidaDto;
+
+    }
 
 
     private void configureMapping() {
@@ -93,38 +120,16 @@ public class PacienteService implements IPacienteService {
 
 
 
-    @Override
-    public PacienteSalidaDto modificarPaciente(pacienteModificacionEntradaDto pacienteModificado) {
-             /*
-      PacienteSalidaDto pacienteSalidaDto = null;
-      Paciente pacienteAModificar = pacienteIDao.buscarPorId(pacienteModificado.getId());
-
-      if(pacienteAModificar != null){
-          pacienteAModificar = dtoModificadoAEntidad(pacienteModificado);
-          pacienteSalidaDto = entidadADtoSalida(pacienteIDao.modificar(pacienteAModificar));
-
-      }
-
-      return pacienteSalidaDto;
-
-          */
-        return null;
-
-        }
-
-
-
-
 
 
         //metodos
 
 
-    public Paciente dtoEntradaAEntidad(PacienteEntradaDto pacienteEntradaDto) {
+    private Paciente dtoEntradaAEntidad(PacienteEntradaDto pacienteEntradaDto) {
         return modelMapper.map(pacienteEntradaDto, Paciente.class);
     }
 
-    public PacienteSalidaDto entidadADtoSalida(Paciente paciente) {
+    private PacienteSalidaDto entidadADtoSalida(Paciente paciente) {
         return modelMapper.map(paciente, PacienteSalidaDto.class);
     }
 

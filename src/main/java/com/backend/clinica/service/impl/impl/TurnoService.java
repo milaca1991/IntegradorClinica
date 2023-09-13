@@ -1,4 +1,4 @@
-package com.backend.clinica.service.impl;
+package com.backend.clinica.service.impl.impl;
 
 import com.backend.clinica.dto.entrada.modificacion.turnoModificacionEntradaDto;
 import com.backend.clinica.dto.entrada.turno.TurnoEntradaDto;
@@ -13,13 +13,17 @@ import com.backend.clinica.entity.Turno;
 import com.backend.clinica.exceptions.BadRequestException;
 import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.repository.TurnoRepository;
+import com.backend.clinica.service.impl.ITurnoService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+
+@Service
 public class TurnoService implements ITurnoService {
 
 

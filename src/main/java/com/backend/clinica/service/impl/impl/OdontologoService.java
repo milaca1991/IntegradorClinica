@@ -1,4 +1,4 @@
-package com.backend.clinica.service.impl;
+package com.backend.clinica.service.impl.impl;
 
 import com.backend.clinica.dto.entrada.modificacion.odontologoModificacionEntradaDto;
 import com.backend.clinica.dto.entrada.odontologo.OdontologoEntradaDto;
@@ -6,14 +6,16 @@ import com.backend.clinica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinica.entity.Odontologo;
 import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.repository.OdontologoRepository;
+import com.backend.clinica.service.impl.IOdontologoService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
-public class OdontologoService implements IOdontologoService{
+@Service
+public class OdontologoService implements IOdontologoService {
     private final Logger LOGGER = (Logger) LoggerFactory.getLogger(OdontologoService.class);
     private final OdontologoRepository odontologoRepository;
     private final ModelMapper modelMapper;
@@ -30,7 +32,7 @@ public class OdontologoService implements IOdontologoService{
 
         Odontologo odGuardado = odontologoRepository.save(dtoEntradaAEntidad(odontologo));
         OdontologoSalidaDto odontologoSalidaDto = modelMapper.map(odGuardado, OdontologoSalidaDto.class);
-        LOGGER.info("Odontologo guardado: {}");
+        LOGGER.info("Odontologo guardado: {}", odontologoSalidaDto);
         return odontologoSalidaDto;
     }
 
@@ -40,7 +42,7 @@ public class OdontologoService implements IOdontologoService{
         OdontologoSalidaDto odontologoSalidaDto = null;
         if (odontologoBuscado != null) {
             odontologoSalidaDto = modelMapper.map(odontologoBuscado, OdontologoSalidaDto.class);
-            LOGGER.info("Odontologo encontrado: {}");
+            LOGGER.info("Odontologo encontrado: {}", odontologoSalidaDto);
         } else LOGGER.error("El id no se encuentra registrado en la base de datos");
 
         return odontologoSalidaDto;
@@ -89,7 +91,7 @@ public class OdontologoService implements IOdontologoService{
         return odontologoSalidaDto;
     }
 
-    public Odontologo dtoEntradaAEntidad(OdontologoEntradaDto odontologoEntradaDto) {
+    private Odontologo dtoEntradaAEntidad(OdontologoEntradaDto odontologoEntradaDto) {
         return modelMapper.map(odontologoEntradaDto, Odontologo.class);
     }
 }

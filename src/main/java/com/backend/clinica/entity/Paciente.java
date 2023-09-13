@@ -4,9 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "PACIENTES", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"dni"})
-})
+@Table(name = "PACIENTES")
 public class Paciente {
 
     @Id
@@ -27,7 +25,7 @@ public class Paciente {
     private LocalDate fechaIngreso;
 
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "domicilio id")
+    @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
     public Paciente( String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {

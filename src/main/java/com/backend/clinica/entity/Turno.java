@@ -4,19 +4,24 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-@Entity(name = "TURNO")
+@Entity
+@Table(name = "TURNOS")
 public class Turno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "ID")
+
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
 
 
-    @ManyToOne()
 
+    @ManyToOne
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
     @Column(name = "FECHAYHORA")

@@ -12,7 +12,7 @@ public class pacienteModificacionEntradaDto {
 
 
     @NotNull
-    private int id;
+    private Long id;
 
     @NotNull
     private String nombre;
@@ -21,7 +21,7 @@ public class pacienteModificacionEntradaDto {
     private String apellido;
 
     @NotNull
-    private String dni;
+    private int dni;
 
     @NotNull
     private LocalDate fechaIngreso;
@@ -32,7 +32,7 @@ public class pacienteModificacionEntradaDto {
     public pacienteModificacionEntradaDto() {
     }
 
-    public pacienteModificacionEntradaDto(int id, String nombre, String apellido, String dni, LocalDate fechaIngreso, domicilioModificacionEntradaDto domicilio) {
+    public pacienteModificacionEntradaDto(Long id, String nombre, String apellido, int dni, LocalDate fechaIngreso, domicilioModificacionEntradaDto domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -41,11 +41,11 @@ public class pacienteModificacionEntradaDto {
         this.domicilio = domicilio;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class pacienteModificacionEntradaDto {
         this.apellido = apellido;
     }
 
-    public String getDni() {
+    public int getDni() {
         return dni;
     }
 
-    public void setDni(String dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 

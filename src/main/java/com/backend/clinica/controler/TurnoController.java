@@ -18,24 +18,24 @@ import java.util.List;
 //marcar una clase como un controlador de servicios web RESTful. Indica que los métodos dentro de esta clase responderán a solicitudes HTTP y devolverán datos en un formato compatible con REST, como JSON.
 @RestController
 
-
+@CrossOrigin(origins = "http://127.0.0.1:5174")
 //se utiliza para mapear solicitudes HTTP a métodos específicos en el controlador. En este caso, se está configurando el controlador para manejar solicitudes que tengan la ruta "/turnos". Cuando se recibe una solicitud que coincide con esta ruta, el método correspondiente dentro del controlador se ejecutará.
 @RequestMapping("/turnos")
 
 public class TurnoController {
 
 
-    private ITurnoService turnoService;
+    private ITurnoService TurnoService;
 
     @Autowired
     public TurnoController(ITurnoService turnoService) {
-        this.turnoService = turnoService;
+        this.TurnoService = turnoService;
     }
 
     //POST
     @PostMapping("/registrar")
     public ResponseEntity<TurnoSalidaDto> registrarTurno(@Valid @RequestBody TurnoEntradaDto turnoEntradaDto) throws BadRequestException {
-        return new ResponseEntity<>(turnoService.registrarTurno(turnoEntradaDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(TurnoService.registrarTurno(turnoEntradaDto), HttpStatus.CREATED);
     }
 
 
@@ -43,24 +43,24 @@ public class TurnoController {
     //PUT
     @PutMapping("actualizar")
     public ResponseEntity<TurnoSalidaDto> actualizarTurno(@Valid @RequestBody turnoModificacionEntradaDto.TurnoModificacionEntradaDto turnoModificacionEntradaDto) throws ResourceNotFoundException {
-        return new ResponseEntity<>(turnoService.modificarTurno(turnoModificacionEntradaDto), HttpStatus.OK);
+        return new ResponseEntity<>(TurnoService.modificarTurno(turnoModificacionEntradaDto), HttpStatus.OK);
     }
 
     //GET
     @GetMapping("{id}")
     public ResponseEntity<TurnoSalidaDto> obtenerTurnoPorId(@PathVariable Long id) {
-        return new ResponseEntity<>(turnoService.buscarTurnoPorId(id), HttpStatus.OK);
+        return new ResponseEntity<>(TurnoService.buscarTurnoPorId(id), HttpStatus.OK);
     }
 
     @GetMapping()
     public ResponseEntity<List<TurnoSalidaDto>> listarTurnos() {
-        return new ResponseEntity<>(turnoService.listarTurnos(), HttpStatus.OK);
+        return new ResponseEntity<>(TurnoService.listarTurnos(), HttpStatus.OK);
     }
 
     //DELETE
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
-        turnoService.eliminarTurno(id);
+        TurnoService.eliminarTurno(id);
         return new ResponseEntity<>("Turno eliminado correctamente", HttpStatus.OK);
     }
 

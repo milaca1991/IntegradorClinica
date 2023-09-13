@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class Domicilio {
 
 @Id
-@GeneratedValue(strategy= GenerationType.AUTO, generator = "native")
-@GenericGenerator(name = "native", strategy = "native")
+@GeneratedValue(strategy= GenerationType.IDENTITY)
+
 
     @Column(name = "ID")
     private int id;
@@ -26,15 +26,6 @@ public class Domicilio {
     @Column(name = "PROVINCIA")
     private String provincia;
 
-
-
-    public Domicilio(int id, String calle, int numero, String localidad, String provincia) {
-        this.id = id;
-        this.calle = calle;
-        this.numero = numero;
-        this.localidad = localidad;
-        this.provincia = provincia;
-    }
 
 
 
@@ -88,10 +79,6 @@ public class Domicilio {
     }
 
 
-    @Override
-    public String toString() {
-        return "Id: " + id + " - Calle: " + calle + " - Numero: " + numero + " - Localidad: " + localidad + " - Provincia: " + provincia;
-    }
 
     //constructor vacio
     public Domicilio() {

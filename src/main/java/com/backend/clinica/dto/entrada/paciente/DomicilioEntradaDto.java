@@ -20,7 +20,6 @@ public class DomicilioEntradaDto {
 
 
     @NotNull(message = "el numero no puede ser nulo")
-    @NotBlank(message = "debe especificarse el numero de la calle")
     @Digits(integer = 8, fraction = 0, message = "el numero debe tener maximo 8 digitos")
     private int numero;
 

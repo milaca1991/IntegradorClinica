@@ -24,8 +24,6 @@ public class PacienteEntradaDto {
     private String apellido;
 
     @NotNull(message = "el dni no puede ser nulo")
-    @NotBlank(message = "debe especificarse el dni ")
-    @Pattern(regexp = "\\d+", message = "el campo dni solo admite caracteres")
     private int dni;
 
 

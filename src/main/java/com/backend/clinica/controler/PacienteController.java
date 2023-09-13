@@ -5,7 +5,6 @@ import com.backend.clinica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinica.exceptions.ResourceNotFoundException;
 import com.backend.clinica.service.impl.IPacienteService;
-import com.backend.clinica.service.impl.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "http://127.0.0.1:5174")
 @RequestMapping("/pacientes")
 public class PacienteController {
     private final IPacienteService pacienteService;
@@ -28,6 +28,7 @@ public class PacienteController {
 
     //POST
     @PostMapping("registrar")
+
     public ResponseEntity<PacienteSalidaDto> registrarPaciente(@Valid @RequestBody PacienteEntradaDto paciente) {
         return new ResponseEntity<>(pacienteService.registrarPaciente(paciente), HttpStatus.CREATED);
     }
