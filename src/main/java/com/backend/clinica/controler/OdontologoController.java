@@ -8,12 +8,13 @@ import com.backend.clinica.dto.entrada.modificacion.odontologoModificacionEntrad
 import org.springframework.web.bind.annotation.*;
 import com.backend.clinica.service.impl.impl.OdontologoService;
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5174")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 
 @RequestMapping("/odontologos")
 public class    OdontologoController {

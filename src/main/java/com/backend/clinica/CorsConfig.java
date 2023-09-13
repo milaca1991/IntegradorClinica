@@ -12,7 +12,7 @@ public class CorsConfig {
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://127.0.0.1:5174"); // Agrega aquí tu origen permitido
+        corsConfiguration.addAllowedOrigin("http://127.0.0.1:5173"); // Agrega aquí tu origen permitido
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
 

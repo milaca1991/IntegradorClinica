@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
 //marcar una clase como un controlador de servicios web RESTful. Indica que los métodos dentro de esta clase responderán a solicitudes HTTP y devolverán datos en un formato compatible con REST, como JSON.
 @RestController
 
-@CrossOrigin(origins = "http://127.0.0.1:5174")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 //se utiliza para mapear solicitudes HTTP a métodos específicos en el controlador. En este caso, se está configurando el controlador para manejar solicitudes que tengan la ruta "/turnos". Cuando se recibe una solicitud que coincide con esta ruta, el método correspondiente dentro del controlador se ejecutará.
 @RequestMapping("/turnos")
 

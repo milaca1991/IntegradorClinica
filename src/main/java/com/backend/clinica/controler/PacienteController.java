@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.validation.Valid;
 import java.util.List;
 
 
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5174")
+@CrossOrigin(origins = "http://127.0.0.1:5173")
 @RequestMapping("/pacientes")
 public class PacienteController {
     private final IPacienteService pacienteService;
