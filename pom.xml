@@ -2,40 +2,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<!--SI ESTA -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.7.14</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<!--SI ESTA -->
 	<groupId>com.digitalhouse.backend</groupId>
 	<artifactId>Integrador</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Integrador</name>
 	<description>Demo project for Spring Boot</description>
+
+	<!--SI ESTA -->
 	<properties>
 		<java.version>17</java.version>
+		<versionProperty/>
 	</properties>
+
+
+
 	<dependencies>
+
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<version>3.1.0</version>
 		</dependency>
 
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<version>3.1.0</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.jetbrains</groupId>
-			<artifactId>annotations</artifactId>
-			<version>24.0.1</version>
-			<scope>compile</scope>
-		</dependency>
 
+
+
+
+
+		<!--SI ESTA -->
 		<!--H2-->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -43,12 +55,14 @@
 			<version>2.1.214</version>
 		</dependency>
 
-
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
+
+		<!--SI ESTA -->
 		<!--Para Logs-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,26 +70,27 @@
 		</dependency>
 
 
-
+		<!--SI ESTA -->
 		<!--Bean Validation-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>2.4.4</version>
 		</dependency>
 
-
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-
+		<!--SI ESTA -->
 		<!--Swagger-->
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -83,7 +98,7 @@
 			<version>1.7.0</version>
 		</dependency>
 
-
+		<!--SI ESTA -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
@@ -91,14 +106,19 @@
 		</dependency>
 	</dependencies>
 
+
+
+
 	<build>
 		<plugins>
+			<!--SI ESTA -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${project.parent.version}</version>
 			</plugin>
 
+			<!--SI ESTA -->
 			<!-- para que ejecute tests unitarios -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -1,6 +1,5 @@
 package com.backend.clinica.service.impl.impl;
 
-import com.backend.clinica.dto.entrada.modificacion.pacienteModificacionEntradaDto;
 import com.backend.clinica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinica.dto.salida.paciente.PacienteSalidaDto;
@@ -15,51 +14,48 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @SpringBootTest
+@TestPropertySource(locations = "classpath:applicationTest.properties")
 
-@TestPropertySource(locations = "classpath: applicationTest.properties")
-
-
-public class PacienteServiceTest {
-
-    @Autowired
-    private PacienteService pacienteService;
+class PacienteServiceTest {
 
 
-    @Test
+
+        @Autowired
+        private PacienteService pacienteService;
+
+
     @Order(1)
-    void deberiaInsertarPacienteDeNombreJuanConId1(){
+        @Test
 
+        void deberiaInsertarUnPacienteDeNombreJoseConId1(){
+            PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Jose", "Diaz", 56798, LocalDate.of(2023, 12, 19), new DomicilioEntradaDto("avenida", 457, "suba", "bogota"));
+            PacienteSalidaDto pacienteSalidaDto = pacienteService.registrarPaciente(pacienteEntradaDto);
 
-        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("juan", "perez",222, LocalDate.of(2023,12,10), new DomicilioEntradaDto("calle", 123,"engativa","provincia"));
+            assertEquals("Jose", pacienteSalidaDto.getNombre());
+            assertEquals(1, pacienteSalidaDto.getId());
+        }
 
-        PacienteSalidaDto pacienteSalidaDto = pacienteService.registrarPaciente(pacienteEntradaDto);
-
-        assertEquals("juan", pacienteSalidaDto.getNombre());
-        assertEquals(1,pacienteSalidaDto.getId());
-
-
-
+    @Order(2)
+    @Test
+    void deberiaRetornarseUnaListaNoVaciaDePacientes(){
+        assertTrue(pacienteService.listarPacientes().size() > 0);
     }
 
     @Test
+    @Order(3)
+    void alIntentarEliminarUnPacienteYaEliminado_deberiaLanzarseUnResourceNotFoundException(){
+        try{
+            pacienteService.eliminarPaciente(1L);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        assertThrows(ResourceNotFoundException.class, () -> pacienteService.eliminarPaciente(1L));
+    }
 
-    void deberiaRetornarUnaListaNoVaciaDePacientes(){
 
-        assertTrue(pacienteService.listarPacientes().size()>0);
 
 
 
     }
-    @Test
-    void alIntentarActualizarPacienteId2_deberiaLazarResourceNotFound(){
-
-        pacienteModificacionEntradaDto pacienteModificacionEntradaDto = new pacienteModificacionEntradaDto();
-
-        pacienteModificacionEntradaDto.setId(2L);
-        assertThrows(ResourceNotFoundException.class,() -> pacienteService.modificarPaciente(pacienteModificacionEntradaDto));
-
-    }
-
-
-}
