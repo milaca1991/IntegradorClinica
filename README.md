@@ -2,11 +2,11 @@
 
 Proyecto final para la materia de Backend 
 
-#Equipo de desarrollo
+# Equipo de desarrollo
 
 Garcia,Camila  
 Diaz,Jose
 
-#Tecnologías
+# Tecnologías
 Springboot
 Javascript
