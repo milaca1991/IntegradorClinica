@@ -1,5 +1,7 @@
 package com.backend.clinica.controler;
 import com.backend.clinica.exceptions.ResourceNotFoundException;
+import com.backend.clinica.service.impl.IOdontologoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import com.backend.clinica.dto.entrada.odontologo.OdontologoEntradaDto;
@@ -14,14 +16,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5173")
-
+@CrossOrigin(origins = "http://localhost:63342")
 @RequestMapping("/odontologos")
 public class    OdontologoController {
 
-    private final OdontologoService odontologoService;
+    private final IOdontologoService odontologoService;
 
-    public OdontologoController(OdontologoService odontologoService) {
+
+    @Autowired
+    public OdontologoController(IOdontologoService odontologoService) {
         this.odontologoService = odontologoService;
     }
 
@@ -33,7 +36,7 @@ public class    OdontologoController {
 
     //PUT
     @PutMapping("actualizar")
-    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@Valid @RequestBody odontologoModificacionEntradaDto odontologo) {
+    public ResponseEntity<OdontologoSalidaDto> actualizarOdontologo(@Valid @RequestBody odontologoModificacionEntradaDto odontologo)throws ResourceNotFoundException {
         return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologo), HttpStatus.OK);
     }
 
