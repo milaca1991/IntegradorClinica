@@ -23,9 +23,7 @@ public class Turno {
     @ManyToOne
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
-    @Column(name = "FECHAYHORA")
-    private LocalDateTime fechaYhora;
+    private LocalDateTime fechaYHora;
 
 
 
@@ -55,12 +53,15 @@ public class Turno {
     }
 
     public LocalDateTime getFechaYhora() {
-        return fechaYhora;
+        return fechaYHora;
     }
 
     public void setFechaYhora(LocalDateTime fechaYhora) {
-        this.fechaYhora = fechaYhora;
+        this.fechaYHora = fechaYhora;
     }
+
+
+
 
 //constructor vacio
     public Turno() {
@@ -70,6 +71,6 @@ public class Turno {
 
         this.odontologo = odontologo;
         this.paciente = paciente;
-        this.fechaYhora = fechaYhora;
+        this.fechaYHora = fechaYhora;
     }
 }

@@ -27,7 +27,7 @@ import java.util.List;
 public class TurnoService implements ITurnoService {
 
 
-    private final Logger LOGGER = (Logger) LoggerFactory.getLogger(TurnoService.class);
+    private final Logger LOGGER =  LoggerFactory.getLogger(TurnoService.class);
 
     private final TurnoRepository turnoRepository;
     private final ModelMapper modelMapper;
@@ -40,6 +40,8 @@ public class TurnoService implements ITurnoService {
         this.modelMapper = modelMapper;
         this.odontologoService = odontologoService;
         this.pacienteService = pacienteService;
+
+
 
     }
 
@@ -113,16 +115,16 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto modificarTurno(turnoModificacionEntradaDto.TurnoModificacionEntradaDto turnoModificacionEntradaDto) throws ResourceNotFoundException {
+    public TurnoSalidaDto modificarTurno(turnoModificacionEntradaDto TurnoModificacionEntradaDto) throws ResourceNotFoundException {
 
-        Turno turnoAActualizar = turnoRepository.findById(turnoModificacionEntradaDto.getId()).orElse(null);
+        Turno turnoAActualizar = turnoRepository.findById(TurnoModificacionEntradaDto.getId()).orElse(null);
         TurnoSalidaDto turnoSalidaDto = null;
 
         if (turnoAActualizar != null) {
 
-            turnoAActualizar.setPaciente(modelMapper.map(pacienteService.buscarPacientePorId(turnoModificacionEntradaDto.getIdPaciente()), Paciente.class));
-            turnoAActualizar.setOdontologo(modelMapper.map(odontologoService.buscarOdontologoPorId(turnoModificacionEntradaDto.getIdOdontologo()), Odontologo.class));
-            turnoAActualizar.setFechaYhora(turnoModificacionEntradaDto.getFechaYHora());
+            turnoAActualizar.setPaciente(modelMapper.map(pacienteService.buscarPacientePorId(TurnoModificacionEntradaDto.getIdPaciente()), Paciente.class));
+            turnoAActualizar.setOdontologo(modelMapper.map(odontologoService.buscarOdontologoPorId(TurnoModificacionEntradaDto.getIdOdontologo()), Odontologo.class));
+            turnoAActualizar.setFechaYhora(TurnoModificacionEntradaDto.getFechaYHora());
             turnoRepository.save(turnoAActualizar);
 
             turnoSalidaDto = entidadADto(turnoAActualizar);
