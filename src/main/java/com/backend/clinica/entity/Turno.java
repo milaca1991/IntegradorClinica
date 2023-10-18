@@ -10,8 +10,6 @@ public class Turno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
     private Long id;
 
     @ManyToOne
@@ -27,14 +25,28 @@ public class Turno {
 
 
 
+    //constructor vacio
+    public Turno() {
+    }
+
+    public Turno( Odontologo odontologo, Paciente paciente, LocalDateTime fechaYhora) {
+
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+        this.fechaYHora = fechaYhora;
+    }
+
+    public Turno(Long id, Odontologo odontologo, Paciente paciente, LocalDateTime fechaYHora) {
+        this.id = id;
+        this.odontologo = odontologo;
+        this.paciente = paciente;
+        this.fechaYHora = fechaYHora;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Odontologo getOdontologo() {
         return odontologo;
@@ -59,18 +71,6 @@ public class Turno {
     public void setFechaYhora(LocalDateTime fechaYhora) {
         this.fechaYHora = fechaYhora;
     }
-
-
-
-
-//constructor vacio
-    public Turno() {
-    }
-
-    public Turno( Odontologo odontologo, Paciente paciente, LocalDateTime fechaYhora) {
-
-        this.odontologo = odontologo;
-        this.paciente = paciente;
-        this.fechaYHora = fechaYhora;
-    }
 }
+
+

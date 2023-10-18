@@ -68,6 +68,7 @@ public class TurnoService implements ITurnoService {
             }
         } else {
 
+
             Turno turnoNuevo = turnoRepository.save(modelMapper.map(turnoEntradaDto, Turno.class));
             turnoSalidaDto = entidadADto(turnoNuevo);
 

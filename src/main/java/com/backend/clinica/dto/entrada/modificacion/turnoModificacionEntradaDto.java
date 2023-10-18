@@ -7,9 +7,11 @@ import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
-public class turnoModificacionEntradaDto {
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+
+public class turnoModificacionEntradaDto {
 
 
         @NotNull(message = "Debe proveerse el id del turno que se desea modificar")
