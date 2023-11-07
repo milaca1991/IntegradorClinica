@@ -5,14 +5,14 @@ function registrarPaciente() {
       event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
       // Obtén los valores de los campos del formulario
-      let nombre = document.getElementById("nombre").value;
-      let apellido = document.getElementById("apellido").value;
-      let dni = document.getElementById("dni").value;
-      let fechaIngreso = document.getElementById("fechaIngreso").value;
-      let calle = document.getElementById("calle").value;
-      let numero = document.getElementById("numero").value;
-      let localidad = document.getElementById("localidad").value;
-      let provincia = document.getElementById("provincia").value;
+      let nombre = document.getElementById("nombre");
+      let apellido = document.getElementById("apellido");
+      let dni = document.getElementById("dni");
+      let fechaIngreso = document.getElementById("fechaIngreso");
+      let calle = document.getElementById("calle");
+      let numero = document.getElementById("numero");
+      let localidad = document.getElementById("localidad");
+      let provincia = document.getElementById("provincia");
 
       // Crea un objeto con los datos a enviar
       let pacienteData = {
@@ -38,11 +38,12 @@ function registrarPaciente() {
       })
         .then((response) => response.json())
         .then((data) => {
-          // Maneja la respuesta del servidor aquí
-          console.log(data);
+       if (data.error) {
+          alert(data.error); // Muestra el mensaje de error
+        } else {
+          console.log(data); // Muestra la respuesta exitosa
           alert("Paciente registrado con éxito.");
-          // Puedes redirigir a otra página o hacer otras acciones después de registrar al paciente
-        })
+        } })
         .catch((error) => {
           console.error("Error:", error);
           alert("Hubo un error al registrar al paciente.");
@@ -58,9 +59,9 @@ function registrarOdontologo() {
       event.preventDefault(); // Evita que el formulario se envíe automáticamente
 
       // Obtén los valores de los campos del formulario
-      let nombre = document.getElementById("nombre").value;
-      let apellido = document.getElementById("apellido").value;
-      let matricula = document.getElementById("matricula").value;
+      let nombre = document.getElementById("nombre");
+      let apellido = document.getElementById("apellido");
+      let matricula = document.getElementById("matricula");
 
       // Crea un objeto con los datos a enviar
       let odontologoData = {
@@ -80,10 +81,14 @@ function registrarOdontologo() {
         .then((response) => response.json())
         .then((data) => {
           // Maneja la respuesta del servidor aquí
-          console.log(data);
-          alert("Odontólogo registrado con éxito.");
+            if (data.error) {
+                 alert(data.error); // Muestra el mensaje de error
+             } else {
+
+              console.log(data);
+              alert("Odontólogo registrado con éxito.");
           // Puedes redirigir a otra página o hacer otras acciones después de registrar al odontólogo
-        })
+     }  })
         .catch((error) => {
           console.error("Error:", error);
           alert("Hubo un error al registrar al odontólogo.");
@@ -131,10 +136,11 @@ function mostrarPaciente() {
     });
 }
 
-// Llama a la función para mostrar pacientes al cargar la página
-mostrarPaciente();
+
 
 
 // Llama a las funciones para registrar pacientes y odontólogos
 registrarPaciente();
 registrarOdontologo();
+
+// Llama a la función para mostrar pacientes al cargar la página

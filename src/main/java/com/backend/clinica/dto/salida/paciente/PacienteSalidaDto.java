@@ -1,6 +1,7 @@
 package com.backend.clinica.dto.salida.paciente;
 
 import com.backend.clinica.entity.Domicilio;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,8 @@ public class PacienteSalidaDto {
     private Long id;
     private String nombre;
     private String apellido;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fechaIngreso;
     private DomicilioSalidaDto domicilio;
 

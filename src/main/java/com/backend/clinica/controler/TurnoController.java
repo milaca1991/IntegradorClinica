@@ -18,7 +18,7 @@ import java.util.List;
 //marcar una clase como un controlador de servicios web RESTful. Indica que los métodos dentro de esta clase responderán a solicitudes HTTP y devolverán datos en un formato compatible con REST, como JSON.
 @RestController
 
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 //se utiliza para mapear solicitudes HTTP a métodos específicos en el controlador. En este caso, se está configurando el controlador para manejar solicitudes que tengan la ruta "/turnos". Cuando se recibe una solicitud que coincide con esta ruta, el método correspondiente dentro del controlador se ejecutará.
 @RequestMapping("/turnos")
 

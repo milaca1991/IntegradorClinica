@@ -11,9 +11,6 @@ public class Odontologo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-
-
     @Column(name = "ID")
     private Long id;
 
